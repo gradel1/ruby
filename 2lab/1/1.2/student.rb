@@ -10,6 +10,30 @@ class Student
   def ID
     @ID
   end
+  
+  def Last_name= (last_name)
+    @Last_name = last_name
+  end
+  
+  def Last_name
+    @Last_name
+  end
+  
+  def First_name= (first_name)
+    @First_name = first_name
+  end
+
+  def First_name
+    @First_name
+  end
+  
+  def Patronymic= (patronymic)
+    @Patronymic = patronymic
+  end
+  
+  def Patronymic
+    @Patronymic
+  end
 
   def Phone= (phone)
     @Phone=phone
