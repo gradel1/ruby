@@ -1,5 +1,6 @@
 class Student
-	attr_accessor :id, :last_name, :first_name, :patronymic, :phone, :telegram, :email, :git
+	attr_accessor :email, :git
+	attr_reader :phone, :id, :last_name, :first_name, :patronymic, :telegram
 	
 	def initialize(last_name:,first_name:,patronymic:, id: nil, phone: nil, telegram: nil, email: nil, git: nil)
 		self.last_name= last_name
@@ -16,5 +17,59 @@ class Student
 		"ID: #{@id}, Фамилия: #{@last_name}, Имя: #{@first_name}, Отчество: #{@patronymic}, Телефон: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, Гит: #{@git}"
 	end
 
+	def self.phone_valid?(phone)
+		phone.match /\A\+?\d{11}\z/
+	end
+
+	def phone= (phone)
+		if !phone.nil? and Student.phone_valid?(phone)==nil then raise ArgumentError,"Invalid phone number" end
+		@phone = phone
+	end
+
+	def self.id_valid?(id)
+		id.to_s.match /^[0-9]+$/
+	end
+
+	def id= (id)
+		if !id.nil? and Student.id_valid?(id)==nil then raise ArgumentError,"Invalid ID" end
+		@id=id
+	end
+
+	def self.name_valid?(name)
+		name.match /^[A-Z][^A-Z\d]+$/
+	end
+
+	def last_name= (last_name)
+		if !last_name.nil? and Student.name_valid?(last_name)==nil then raise ArgumentError,"Invalid last name" end
+		@last_name=last_name
+	end
+
+	def first_name= (first_name)
+		if !first_name.nil? and Student.name_valid?(first_name)==nil then raise ArgumentError,"Invalid first name" end
+		@first_name=first_name
+	end
+
+	def patronymic= (patronymic)
+		if !patronymic.nil? and Student.name_valid?(patronymic)==nil then raise ArgumentError,"Invalid patronymic" end
+		@patronymic=patronymic
+	end
+
+	def self.telegram_valid?(telegram)
+		telegram.match /^[\w\d\s]+$/
+	end
+
+	def telegram= (telegram)
+		if !telegram.nil? and Student.telegram_valid?(telegram)==nil then raise ArgumentError,"Invalid telegram" end
+		@telegram=telegram
+	end
+
+	def self.email_valid?(email)
+		email.match /^[\d\w]+\@gmail.com$/
+	end
+
 end
 
+student1 = Student.new(last_name: "Gradel", first_name: "Alexander", patronymic: "Olegоvich", phone: "+79183121065", id: 1, telegram: "gradel1")
+
+p Student.phone_valid?("+79183121065")
+puts student1.to_s
