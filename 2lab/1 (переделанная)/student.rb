@@ -80,9 +80,28 @@ class Student
 		@git=git
 	end
 
+	def git_valid?
+		self.git != nil
+	end
+
+	def contacts_valid?
+		self.phone != nil or self.email != nil or self.telegram != nil
+	end
+
+	def validate
+		git_valid? and contacts_valid?
+	end
+		
+	def set_contacts(phone: nil, telegram: nil, git: nil)
+		self.phone= phone
+		self.telegram= telegram
+		self.email= email
+	end
 end
 
 student1 = Student.new(last_name: "Gradel", first_name: "Alexander", patronymic: "Olegоvich", phone: "+79182522066", id: 1, telegram: "gradel1", email: "gradel1@gmail.com", git: "gradel1")
 
 p Student.phone_valid?("+79183121065")
+puts student1.to_s
+student1.set_contacts(telegram: "test")
 puts student1.to_s
