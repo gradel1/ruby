@@ -1,6 +1,5 @@
 class Student
-	attr_accessor :email, :git
-	attr_reader :phone, :id, :last_name, :first_name, :patronymic, :telegram
+	attr_reader :phone, :id, :last_name, :first_name, :patronymic, :telegram, :email, :git
 	
 	def initialize(last_name:,first_name:,patronymic:, id: nil, phone: nil, telegram: nil, email: nil, git: nil)
 		self.last_name= last_name
@@ -67,9 +66,23 @@ class Student
 		email.match /^[\d\w]+\@gmail.com$/
 	end
 
+	def email= (email)
+		if !email.nil? and Student.email_valid?(email)==nil then raise ArgumentError,"Invalid email" end
+		@email=email
+	end
+
+	def self.git_valid?(git)
+		git.match /^[\d\w]+$/
+	end
+
+	def git= (git)
+		if !git.nil? and Student.git_valid?(git)==nil then raise ArgumentError,"Invalid git" end
+		@git=git
+	end
+
 end
 
-student1 = Student.new(last_name: "Gradel", first_name: "Alexander", patronymic: "Olegоvich", phone: "+79183121065", id: 1, telegram: "gradel1")
+student1 = Student.new(last_name: "Gradel", first_name: "Alexander", patronymic: "Olegоvich", phone: "+79182522066", id: 1, telegram: "gradel1", email: "gradel1@gmail.com", git: "gradel1")
 
 p Student.phone_valid?("+79183121065")
 puts student1.to_s
