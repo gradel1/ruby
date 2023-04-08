@@ -11,6 +11,11 @@ class Student
 		self.email= email
 		self.git= git
 	end
+
+	def self.from_s(s)
+		hash = s.split(", ").map {|i| i.split(": ")}.to_h
+		Student.new(last_name: hash["last_name"], first_name: hash["first_name"], patronymic: hash["patronymic"], id: hash["id"], phone: hash["phone"], telegram: hash["telegram"], email: hash["email"], git: hash["git"])
+	end
 	
 	def to_s
 		"ID: #{@id}, Фамилия: #{@last_name}, Имя: #{@first_name}, Отчество: #{@patronymic}, Телефон: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, Гит: #{@git}"
@@ -91,17 +96,21 @@ class Student
 	def validate
 		git_valid? and contacts_valid?
 	end
-		
+
 	def set_contacts(phone: nil, telegram: nil, git: nil)
 		self.phone= phone
 		self.telegram= telegram
 		self.email= email
 	end
+
+
 end
 
 student1 = Student.new(last_name: "Gradel", first_name: "Alexander", patronymic: "Olegоvich", phone: "+79182522066", id: 1, telegram: "gradel1", email: "gradel1@gmail.com", git: "gradel1")
 
-p Student.phone_valid?("+79183121065")
-puts student1.to_s
-student1.set_contacts(telegram: "test")
-puts student1.to_s
+#p Student.phone_valid?("+79183121065")
+#puts student1.to_s
+#student1.set_contacts(telegram: "test")
+#puts student1.to_s
+student2 = Student.from_s("last_name: Gradel, first_name: Oleg, patronymic: Olegоvich")
+puts student2.to_s
