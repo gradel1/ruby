@@ -96,21 +96,24 @@ class Student
 	def validate
 		git_valid? and contacts_valid?
 	end
-
+		
 	def set_contacts(phone: nil, telegram: nil, git: nil)
 		self.phone= phone
 		self.telegram= telegram
 		self.email= email
 	end
 
+    	def getInfo
+		"fullname: #{last_name} #{first_name[0]}. #{patronymic[0]}., git: #{git}, telegram: #{telegram}"
+	end
 
 end
 
 student1 = Student.new(last_name: "Gradel", first_name: "Alexander", patronymic: "Olegоvich", phone: "+79182522066", id: 1, telegram: "gradel1", email: "gradel1@gmail.com", git: "gradel1")
 
 #p Student.phone_valid?("+79183121065")
-#puts student1.to_s
+#puts student1
 #student1.set_contacts(telegram: "test")
-#puts student1.to_s
-student2 = Student.from_s("last_name: Gradel, first_name: Oleg, patronymic: Olegоvich")
-puts student2.to_s
+#puts student1
+#student2 = Student.from_s("last_name: Gradel, first_name: Oleg, patronymic: Olegоvich")
+puts student1.getInfo
