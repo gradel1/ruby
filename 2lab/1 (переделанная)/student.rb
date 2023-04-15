@@ -96,16 +96,23 @@ class Student
 	def validate
 		git_valid? and contacts_valid?
 	end
-		
-	def set_contacts(phone: nil, telegram: nil, git: nil)
+
+    def set_contacts(phone: nil, telegram: nil, git: nil)
 		self.phone= phone
 		self.telegram= telegram
 		self.email= email
-	end
+    end
 
-    	def getInfo
-		"fullname: #{last_name} #{first_name[0]}. #{patronymic[0]}., git: #{git}, telegram: #{telegram}"
-	end
+    def first_contact
+    	if self.phone != nil then return "phone: #{self.phone}" end
+    	if self.email != nil then return "email: #{self.email}" end
+    	if self.telegram != nil then return "telegram: #{self.telegram}" end
+    	return nil
+    end
+
+    def getInfo
+    	"fullname: #{self.last_name} #{self.first_name[0]}. #{self.patronymic[0]}., #{if git_valid? then "git: #{self.git}, " end}#{first_contact}"
+    end
 
 end
 
