@@ -1,4 +1,6 @@
-class Student
+load('student_abstract.rb')
+
+class Student < Student_abstract
 	attr_reader :phone, :id, :last_name, :first_name, :patronymic, :telegram, :email, :git
 	
 	def initialize(last_name:,first_name:,patronymic:, id: nil, phone: nil, telegram: nil, email: nil, git: nil)
