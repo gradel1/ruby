@@ -1,7 +1,6 @@
 load('student.rb')
-load('student_abstract.rb')
 
-class Student_short < Student_abstract
+class Student_short < Student
 	attr_reader :id, :fullname, :git, :contact
 
 	def initialize(fullname:, git: nil, contact: nil, id: nil)
@@ -24,7 +23,9 @@ class Student_short < Student_abstract
 
 	def self.from_s(s,id)
 		hash = s.split(", ").map {|i| i.split(": ")}.to_h
-		Student_short.new(fullname: hash["fullname"], id: id, git: hash["git"], contact: self.any_contact(hash))
+		if git_valid?(hash["git"])
+			Student_short.new(fullname: hash["fullname"], id: id, git: hash["git"], contact: self.any_contact(hash))
+		end
 	end
 
 end
