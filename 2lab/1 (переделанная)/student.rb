@@ -1,5 +1,5 @@
 class Student
-	attr_reader :phone, :id, :last_name, :first_name, :patronymic, :telegram, :email, :git
+	attr_reader :phone, :last_name, :first_name, :patronymic, :telegram, :email
 	
 	def initialize(last_name:,first_name:,patronymic:, id: nil, phone: nil, telegram: nil, email: nil, git: nil)
 		self.last_name= last_name
@@ -103,15 +103,8 @@ class Student
 		self.email= email
     end
 
-    def first_contact
-    	if self.phone != nil then return "phone: #{self.phone}" end
-    	if self.email != nil then return "email: #{self.email}" end
-    	if self.telegram != nil then return "telegram: #{self.telegram}" end
-    	return nil
-    end
-
     def getInfo
-    	"fullname: #{self.last_name} #{self.first_name[0]}. #{self.patronymic[0]}., #{if git_valid? then "git: #{self.git}, " end}#{first_contact}"
+    	"fullname: #{self.last_name} #{self.first_name[0]}. #{self.patronymic[0]}., #{if git_valid? then "git: #{self.git}, " end}#{Student_abstract.any_contact}"
     end
 
 end
