@@ -1,5 +1,6 @@
 class Student_abstract
   attr_reader :id, :git
+	private_class_method :new
   
   def self.any_contact(hash: {})
 	if hash["phone"] != nil then return hash["phone"] end
