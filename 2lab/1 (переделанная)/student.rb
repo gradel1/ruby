@@ -1,3 +1,5 @@
+load('student_abstract.rb')
+
 class Student
 	attr_reader :phone, :last_name, :first_name, :patronymic, :telegram, :email
 	
