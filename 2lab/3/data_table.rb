@@ -4,6 +4,18 @@ class Data_table
     self.data= data
   end
 
+  def at(row,col)
+    data[row][col]
+  end
+
+  def rows_length
+    data.length
+  end
+
+  def columns_length
+    data[0].length
+  end
+
   private
   def data=(data)
     @data=data
