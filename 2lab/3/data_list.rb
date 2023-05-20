@@ -23,7 +23,7 @@ class Data_list
   def get_data
   end
 
-  private
+  protected
 
   def data=(data)
     @data = data
