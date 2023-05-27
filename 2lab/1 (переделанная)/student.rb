@@ -28,6 +28,10 @@ class Student < Student_abstract
     "id: #{@id}, last_name: #{@last_name}, first_name: #{@first_name}, patronymic: #{@patronymic}, phone: #{@phone}, telegram: #{@telegram}, email: #{@email}, git: #{@git}"
   end
 
+  def to_hash
+    {id: @id, last_name: @last_name, first_name: @first_name, patronymic: @patronymic, phone: @phone, telegram: @telegram, email: @email, git: @git}
+  end
+
   def self.phone_valid?(phone)
     phone.match /\A\+?\d{11}\z/
   end
@@ -128,3 +132,4 @@ puts student1.getInfo
 
 student2 = Student.new(last_name: "Gradel", first_name: "Blexander", patronymic: "Olegоvich", phone: "+79182522066", id: 2, telegram: "gradel1", email: "gradel1@gmail.com", git: "gradel1")
 puts student2.getInfo
+puts student2.to_hash
