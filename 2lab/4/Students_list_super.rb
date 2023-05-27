@@ -27,7 +27,7 @@ class Students_list_super
   end
 
   def write_to_file(file_path)
-    list_hash = students.map{|stud|stud.to_s}
+    list_hash = students.map{|stud|stud.to_hash}
     File.write(file_path, type_class.list_hash_to_str(list_hash))
   end
 
