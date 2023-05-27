@@ -97,7 +97,7 @@ end
 #p a.get_student_count
 
 a = Students_list_super.new(Students_list_JSON)
-a.read_file("2 лаба/sds.yaml")
-a.write_to_file("2 лаба/sd.yaml")
+a.read_file("2 лаба/sds.json")
+a.write_to_file("2 лаба/sd.json")
 puts a.sorted_by_name
 
