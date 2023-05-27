@@ -3,6 +3,7 @@
 #load('Student_short.rb')
 #load('data_list.rb')
 require_relative 'Students_list_JSON'
+require_relative 'Students_list_YAML'
 require_relative 'student'
 require_relative 'Student_short'
 require_relative 'data_list'
@@ -19,8 +20,9 @@ class Students_list_super
     raise ArgumentError, 'File not found' unless File.exist?(file_path)
     list_hash = type_class.list_hash_from_str(File.read(file_path))
     self.students = list_hash.map {|st|
-      hash = st.split(", ").map {|i| i.split(": ")}.to_h
-      Student.new(last_name: hash["last_name"], first_name: hash["first_name"], patronymic: hash["patronymic"], id: hash["id"], phone: hash["phone"], telegram: hash["telegram"], email: hash["email"], git: hash["git"])
+      #hash = st.split(", ").map {|i| i.split(": ")}.to_h
+      #Student.new(last_name: hash["last_name"], first_name: hash["first_name"], patronymic: hash["patronymic"], id: hash["id"], phone: hash["phone"], telegram: hash["telegram"], email: hash["email"], git: hash["git"])
+      Student.new(last_name: st[:last_name],first_name: st[:first_name], patronymic: st[:patronymic], id: st[:id], phone: st[:phone], telegram: st[:telegram],email: st[:email], git: st[:git])
     }
   end
 
