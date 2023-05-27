@@ -17,6 +17,11 @@ class Data_list
     selected_id
   end
 
+  #добавление в существующий объект для метода get_k_n_student_short_list класса Students_list_super
+  def append(elements)
+    data.append(elements)
+  end
+
   def get_names
   end
 
